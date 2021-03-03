@@ -47,19 +47,13 @@ def create_mimic_dict(filename):
     """
     # open and read the file
     my_dict = {}
-    book = open(filename, "r").read()
-    # make it as list
-    words = book.split()
-    # loop through the list
-    for word in words:
-        # check to see if the word is in my_dict
-        # if not then add it to the dict
-        if word not in my_dict:
-            my_dict[word] = 1
-            # check the word nex to it and add it after the first word
-        else:
-            my_dict[word] += 1
-            return my_dict
+    word_list = []
+    with open(filename, "r") as book:
+        for line in book:
+            line = line.strip()
+            word_list = line.split(",")
+            my_dict[word_list[0]] = word_list[1]
+            print(my_dict)
 
 
 print(create_mimic_dict("imdev.txt"))
