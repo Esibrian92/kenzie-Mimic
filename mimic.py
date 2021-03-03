@@ -48,15 +48,21 @@ def create_mimic_dict(filename):
     # open and read the file
     my_dict = {}
     word_list = []
-    with open(filename, "r") as book:
-        for line in book:
-            line = line.strip()
-            word_list = line.split(",")
-            my_dict[word_list[0]] = word_list[1]
-            print(my_dict)
+    with open(filename) as book:
+        page = book.read()
+        nocoma = page.replace(',', '')
+        word_list = nocoma.split()
+        my_dict[word_list[0]] = word_list[1]
+        print(word_list)
+    # with open(filename, "r") as book:
+    #     for line in book:
+    #         lineStr = line.strip()
+    #         word_list = lineStr.split(",")
+    #         my_dict[word_list[0]] = word_list[1]
+    #         print(my_dict)
 
 
-print(create_mimic_dict("imdev.txt"))
+create_mimic_dict("imdev.txt")
 
 
 def print_mimic_random(mimic_dict, num_words):
