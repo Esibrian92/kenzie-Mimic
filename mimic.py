@@ -20,7 +20,7 @@ You can try adding in line breaks around 70 columns so the output looks
 better.
 """
 
-__author__ = "???"
+__author__ = "Erick Sibrian"
 
 
 import random
@@ -45,8 +45,24 @@ def create_mimic_dict(filename):
                 "who" : ["knows"]
             }
     """
-    # +++your code here+++
-    pass
+    # open and read the file
+    my_dict = {}
+    book = open(filename, "r").read()
+    # make it as list
+    words = book.split()
+    # loop through the list
+    for word in words:
+        # check to see if the word is in my_dict
+        # if not then add it to the dict
+        if word not in my_dict:
+            my_dict[word] = 1
+            # check the word nex to it and add it after the first word
+        else:
+            my_dict[word] += 1
+            return my_dict
+
+
+print(create_mimic_dict("imdev.txt"))
 
 
 def print_mimic_random(mimic_dict, num_words):
