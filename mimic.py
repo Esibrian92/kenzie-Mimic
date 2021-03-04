@@ -57,9 +57,9 @@ def create_mimic_dict(filename):
             mimic_dict[previous] = [word]
         else:
             mimic_dict[previous].append(word)
-            previous = word
-            return mimic_dict
-            #############################
+        previous = word
+    return mimic_dict
+    #############################
     # with open(filename) as book:
     #     page = book.read()
     #     book.close()
@@ -96,14 +96,16 @@ def print_mimic_random(mimic_dict, num_words):
         - Repeat this process num_words times
     """
     # +++your code here+++
-    # start_word = ""
-    # for i in range(num_words):
-    #     next = mimic_dict.get(start_word)
-    #     if not next:
-    #         next = mimic_dict[""]
-    #         start_word = random.choice(next)
-    #         print(start_wordend=)
-    # pass
+    start_word = ""
+    for i in range(num_words + 1):
+        print(start_word)
+        if start_word in mimic_dict:
+            start_word = random.choice(mimic_dict.get(start_word))
+        else:
+            start_word = random.choice(mimic_dict.get(""))
+
+
+print_mimic_random(mimic_dict, num_words)
 
 
 def main(args):
