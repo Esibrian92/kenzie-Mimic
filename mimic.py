@@ -46,23 +46,44 @@ def create_mimic_dict(filename):
             }
     """
     # open and read the file
-    my_dict = {}
-    word_list = []
-    with open(filename) as book:
-        page = book.read()
-        nocoma = page.replace(',', '')
-        word_list = nocoma.split()
-        my_dict[word_list[0]] = word_list[1]
-        print(word_list)
+    mimic_dict = {}
+    previous = ""
+    book = open(filename, "r")
+    page = book.read()
+    book.close()
+    words = page.split()
+    for word in words:
+        if previous not in mimic_dict:
+            mimic_dict[previous] = [word]
+        else:
+            mimic_dict[previous].append(word)
+            previous = word
+            return mimic_dict
+            #############################
+    # with open(filename) as book:
+    #     page = book.read()
+    #     book.close()
+    #     nocoma = page.replace(',', '')
+    #     word_list = nocoma.split(" ")
+    #     for word in word_list:
+    #         if previous not in mimic_dict:
+    #             mimic_dict[previous] = [word]
+    #         else:
+    #             mimic_dict[previous].append(word)
+    #             previou = word
+    #             print(mimic_dict)
+    # mimic_dict[word_list[0]] = word_list[1]
+    # print(mimic_dict)
+    ##################################
     # with open(filename, "r") as book:
     #     for line in book:
     #         lineStr = line.strip()
     #         word_list = lineStr.split(",")
-    #         my_dict[word_list[0]] = word_list[1]
-    #         print(my_dict)
+    #         mimic_dict[word_list[0]] = word_list[1]
+    #         print(mimic_dict)
 
 
-create_mimic_dict("imdev.txt")
+print(create_mimic_dict("imdev.txt"))
 
 
 def print_mimic_random(mimic_dict, num_words):
@@ -75,7 +96,14 @@ def print_mimic_random(mimic_dict, num_words):
         - Repeat this process num_words times
     """
     # +++your code here+++
-    pass
+    # start_word = ""
+    # for i in range(num_words):
+    #     next = mimic_dict.get(start_word)
+    #     if not next:
+    #         next = mimic_dict[""]
+    #         start_word = random.choice(next)
+    #         print(start_wordend=)
+    # pass
 
 
 def main(args):
