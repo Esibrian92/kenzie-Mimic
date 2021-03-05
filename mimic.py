@@ -20,7 +20,7 @@ You can try adding in line breaks around 70 columns so the output looks
 better.
 """
 
-__author__ = "???"
+__author__ = "Erick Sibrian"
 
 
 import random
@@ -45,8 +45,45 @@ def create_mimic_dict(filename):
                 "who" : ["knows"]
             }
     """
-    # +++your code here+++
-    pass
+    # open and read the file
+    mimic_dict = {}
+    previous = ""
+    book = open(filename, "r")
+    page = book.read()
+    book.close()
+    words = page.split()
+    for word in words:
+        if previous not in mimic_dict:
+            mimic_dict[previous] = [word]
+        else:
+            mimic_dict[previous].append(word)
+        previous = word
+    return mimic_dict
+    #############################
+    # with open(filename) as book:
+    #     page = book.read()
+    #     book.close()
+    #     nocoma = page.replace(',', '')
+    #     word_list = nocoma.split(" ")
+    #     for word in word_list:
+    #         if previous not in mimic_dict:
+    #             mimic_dict[previous] = [word]
+    #         else:
+    #             mimic_dict[previous].append(word)
+    #             previou = word
+    #             print(mimic_dict)
+    # mimic_dict[word_list[0]] = word_list[1]
+    # print(mimic_dict)
+    ##################################
+    # with open(filename, "r") as book:
+    #     for line in book:
+    #         lineStr = line.strip()
+    #         word_list = lineStr.split(",")
+    #         mimic_dict[word_list[0]] = word_list[1]
+    #         print(mimic_dict)
+
+
+create_mimic_dict("imdev.txt")
 
 
 def print_mimic_random(mimic_dict, num_words):
@@ -59,7 +96,14 @@ def print_mimic_random(mimic_dict, num_words):
         - Repeat this process num_words times
     """
     # +++your code here+++
-    pass
+    start_word = ""
+    for i in range(num_words+1):
+        print(start_word, end=" ")
+        next_word = random.choice(mimic_dict.get(start_word))
+        if next_word in mimic_dict:
+            start_word = next_word
+        else:
+            start_word = random.choice(mimic_dict.get(""))
 
 
 def main(args):
