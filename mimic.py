@@ -83,7 +83,7 @@ def create_mimic_dict(filename):
     #         print(mimic_dict)
 
 
-print(create_mimic_dict("imdev.txt"))
+create_mimic_dict("imdev.txt")
 
 
 def print_mimic_random(mimic_dict, num_words):
@@ -97,15 +97,13 @@ def print_mimic_random(mimic_dict, num_words):
     """
     # +++your code here+++
     start_word = ""
-    for i in range(num_words + 1):
-        print(start_word)
-        if start_word in mimic_dict:
-            start_word = random.choice(mimic_dict.get(start_word))
+    for i in range(num_words+1):
+        print(start_word, end=" ")
+        next_word = random.choice(mimic_dict.get(start_word))
+        if next_word in mimic_dict:
+            start_word = next_word
         else:
             start_word = random.choice(mimic_dict.get(""))
-
-
-print_mimic_random(mimic_dict, num_words)
 
 
 def main(args):
